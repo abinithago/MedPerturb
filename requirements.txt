@@ -1,0 +1,23 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.36.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# HuggingFace dependencies
+accelerate>=0.25.0
+bitsandbytes>=0.41.0  # For 8-bit quantization
+sentencepiece>=0.1.99  # For tokenization
+
+# Utility dependencies
+numpy>=1.24.0
+tqdm>=4.65.0
+requests>=2.31.0
+python-json-logger>=2.0.7  # For structured logging
+
+# Optional but recommended
+wandb>=0.15.0  # For experiment tracking
+pytest>=7.4.0  # For testing
+black>=23.0.0  # For code formatting
+isort>=5.12.0  # For import sorting
+flake8>=6.1.0  # For linting 
