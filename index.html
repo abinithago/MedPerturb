@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,12 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f9fafb;
-      --text: #1f2937;
+      --bg-light: #f9fafb;
+      --bg-dark: #1f2937;
+      --text-light: #1f2937;
+      --text-dark: #f3f4f6;
       --accent: #3b82f6;
-      --gray: #6b7280;
-      --light: #e5e7eb;
-      --card-bg: white;
+      --gray-light: #6b7280;
+      --gray-dark: #9ca3af;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #2d3748;
+      --border-light: #e5e7eb;
+      --border-dark: #374151;
+    }
+
+    [data-theme="light"] {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+      --gray: var(--gray-light);
+      --card-bg: var(--card-bg-light);
+      --border: var(--border-light);
+    }
+
+    [data-theme="dark"] {
+      --bg: var(--bg-dark);
+      --text: var(--text-dark);
+      --gray: var(--gray-dark);
+      --card-bg: var(--card-bg-dark);
+      --border: var(--border-dark);
     }
 
     body {
@@ -21,7 +42,7 @@
       color: var(--text);
       margin: 0;
       padding: 2rem;
-      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
 
     header, section {
@@ -52,20 +73,14 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.2s;
-    }
-
-    .buttons a:hover {
-      background-color: #2563eb;
     }
 
     h2 {
       font-size: 1.6rem;
       margin-top: 2rem;
       margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--light);
+      border-bottom: 2px solid var(--border);
       padding-bottom: 0.4rem;
-      color: var(--text);
     }
 
     table {
@@ -74,43 +89,34 @@
       margin-top: 1rem;
       background-color: var(--card-bg);
       border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      font-size: 0.9rem;
     }
 
     th, td {
-      border: 1px solid var(--light);
-      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
       text-align: left;
       vertical-align: top;
     }
 
     th {
-      background-color: #f3f4f6;
-      color: var(--text);
+      background-color: rgba(59, 130, 246, 0.1);
     }
 
     img {
       max-width: 100%;
       height: auto;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+      border: 1px solid var(--border);
     }
 
     .card {
       background-color: var(--card-bg);
       padding: 1rem 1.5rem;
-      border: 1px solid var(--light);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       margin-top: 1rem;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: var(--accent);
     }
 
     .card a {
@@ -124,11 +130,29 @@
       color: var(--gray);
       margin-top: 4rem;
     }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    #theme-toggle {
+      float: right;
+      background: none;
+      border: 1px solid var(--gray);
+      color: var(--text);
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
   <header>
+    <button id="theme-toggle">Toggle Theme</button>
     <h1>The MedPerturb Dataset</h1>
     <p class="authors">
       Abinitha Gourabathina (MIT), Yuexing Hao (Cornell and MIT), Walter Gerych (MIT), Marzyeh Ghassemi (MIT)<br>
@@ -137,95 +161,103 @@
     <div class="buttons">
       <a href="https://github.com/abinithago/MedPerturb">GitHub</a>
       <a href="https://huggingface.co/datasets/abinitha/MedPerturb">Hugging Face</a>
+      <a href="medperturb_metadata.jsonld" download>Download Croissant File</a>
     </div>
   </header>
 
   <section>
-    <h2>Abstract</h2>
-    <p>
-      Clinical robustness is critical to the safe deployment of medical Large Language Models (LLMs),
-      but key questions remain about how LLMs and humans may differ in response to the real-world variability typified by clinical settings.
-      To address this, we introduce <strong>MedPerturb</strong>, a dataset designed to systematically evaluate medical LLMs under controlled perturbations of clinical input.
-      MedPerturb consists of clinical vignettes spanning a range of pathologies, each transformed along three axes:
-      (1) demographic modifications (e.g., gender-swapping or gender-removal);
-      (2) stylistic variation (e.g., uncertain phrasing or colloquial tone);
-      and (3) viewpoint reformulations (e.g., AI-generated multi-turn conversations or summaries).
-      With MedPerturb, we release a dataset of 800 clinical contexts grounded in realistic input variability,
-      outputs from four LLMs, and three human expert reads per clinical context.
-      We use MedPerturb in three case studies to reveal how shifts in gender identity cues, language style, or viewpoint
-      reflect diverging reasoning capabilities between humans and LLMs.
-      Our results highlight the need for evaluation frameworks that go beyond static benchmarks
-      to assess alignment in clinical reasoning between humans and AI systems.
-    </p>
+    <details open>
+      <summary><h2>Abstract</h2></summary>
+      <p>
+        Clinical robustness is critical to the safe deployment of medical Large Language Models (LLMs),
+        but key questions remain about how LLMs and humans may differ in response to the real-world variability typified by clinical settings.
+        To address this, we introduce <strong>MedPerturb</strong>, a dataset designed to systematically evaluate medical LLMs under controlled perturbations of clinical input...
+      </p>
+    </details>
   </section>
 
   <section>
-    <h2>Dataset Structure</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Original Data Source</th>
-          <th>Perturbation</th>
-          <th>Clinical Contexts</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td rowspan="5">OncQA</td><td>Baseline</td><td>50</td></tr>
-        <tr><td>2</td><td>Gender-Swapped</td><td>50</td></tr>
-        <tr><td>3</td><td>Gender-Removed</td><td>50</td></tr>
-        <tr><td>4</td><td>Uncertain</td><td>50</td></tr>
-        <tr><td>5</td><td>Colorful</td><td>50</td></tr>
-        <tr><td>6</td><td rowspan="5">r/AskaDocs</td><td>Baseline</td><td>50</td></tr>
-        <tr><td>7</td><td>Gender-Swapped</td><td>50</td></tr>
-        <tr><td>8</td><td>Gender-Removed</td><td>50</td></tr>
-        <tr><td>9</td><td>Uncertain</td><td>50</td></tr>
-        <tr><td>10</td><td>Colorful</td><td>50</td></tr>
-        <tr><td>11</td><td rowspan="3">USMLE and Derm</td><td>Vignette</td><td>100</td></tr>
-        <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
-        <tr><td>13</td><td>Conversational</td><td>100</td></tr>
-        <tr><td colspan="3" style="text-align:right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
-        <tr><td colspan="3" style="text-align:right;"><strong>Treatment Questions (3 per context)</strong></td><td><strong>×3 = 2,400</strong></td></tr>
-        <tr><td colspan="3" style="text-align:right;"><strong>Total Human Reads</strong></td><td><strong>×3 = 7,200</strong></td></tr>
-        <tr><td colspan="3" style="text-align:right;"><strong>Total LLM Reads</strong></td><td><strong>×4 = 28,800</strong></td></tr>
-      </tbody>
-    </table>
+    <details>
+      <summary><h2>Dataset Structure</h2></summary>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Original Data Source</th>
+            <th>Perturbation</th>
+            <th>Clinical Contexts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td rowspan="5">OncQA</td><td>Baseline</td><td>50</td></tr>
+          <tr><td>2</td><td>Gender-Swapped</td><td>50</td></tr>
+          <tr><td>3</td><td>Gender-Removed</td><td>50</td></tr>
+          <tr><td>4</td><td>Uncertain</td><td>50</td></tr>
+          <tr><td>5</td><td>Colorful</td><td>50</td></tr>
+          <tr><td>6</td><td rowspan="5">r/AskaDocs</td><td>Baseline</td><td>50</td></tr>
+          <tr><td>7</td><td>Gender-Swapped</td><td>50</td></tr>
+          <tr><td>8</td><td>Gender-Removed</td><td>50</td></tr>
+          <tr><td>9</td><td>Uncertain</td><td>50</td></tr>
+          <tr><td>10</td><td>Colorful</td><td>50</td></tr>
+          <tr><td>11</td><td rowspan="3">USMLE and Derm</td><td>Vignette</td><td>100</td></tr>
+          <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
+          <tr><td>13</td><td>Conversational</td><td>100</td></tr>
+          <tr><td colspan="3" style="text-align:right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
+          <tr><td colspan="3" style="text-align:right;"><strong>Treatment Questions</strong></td><td><strong>×3 = 2,400</strong></td></tr>
+          <tr><td colspan="3" style="text-align:right;"><strong>Total Human Reads</strong></td><td><strong>×3 = 7,200</strong></td></tr>
+          <tr><td colspan="3" style="text-align:right;"><strong>Total LLM Reads</strong></td><td><strong>×4 = 28,800</strong></td></tr>
+        </tbody>
+      </table>
+    </details>
   </section>
 
   <section>
-    <h2>Sample Visualization</h2>
-    <p>t-SNE plot of LLM responses by perturbation type:</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tsne_2d_separated_classes.png/640px-Tsne_2d_separated_classes.png" alt="t-SNE Visualization">
+    <details>
+      <summary><h2>Sample Visualization</h2></summary>
+      <p>t-SNE plot of LLM responses by perturbation type:</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tsne_2d_separated_classes.png/640px-Tsne_2d_separated_classes.png" alt="t-SNE Visualization">
+    </details>
   </section>
 
   <section>
-    <h2>Hugging Face Dataset Card</h2>
-    <div class="card">
-      <h3><a href="https://huggingface.co/datasets/abinithago/MedPerturb">MedPerturb on Hugging Face</a></h3>
-      <p>
-        The MedPerturb dataset contains 800 clinical vignettes systematically perturbed along gender, style, and viewpoint axes. Each context has 3 treatment questions and is annotated by humans and LLMs across 4 model types.
-      </p>
-      <p>
-        → <strong>Use case:</strong> Robustness testing, fairness auditing, hallucination detection, clinical evaluation
-      </p>
-      <p>
-        → <strong>Format:</strong> JSON, with metadata on perturbation type, model responses, and expert judgments.
-      </p>
-    </div>
+    <details>
+      <summary><h2>Hugging Face Dataset Card</h2></summary>
+      <div class="card">
+        <p>
+          The MedPerturb dataset contains 800 clinical vignettes systematically perturbed along gender, style, and viewpoint axes.
+          Each context has 3 treatment questions and is annotated by humans and LLMs across 4 model types.
+        </p>
+        <p><strong>Use case:</strong> Robustness testing, fairness auditing, hallucination detection, clinical evaluation</p>
+        <p><strong>Format:</strong> JSON, with metadata on perturbation type, model responses, and expert judgments.</p>
+      </div>
+    </details>
   </section>
 
   <footer>
     <p>
-      © 2025 The MedPerturb Team. This work is licensed under a 
+      © 2025 The MedPerturb Team · 
       <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
-        Creative Commons Attribution 4.0 International License
-      </a>.
+        CC BY 4.0 License
+      </a>
     </p>
-    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
-      <img style="margin-top: 0.5rem;" alt="Creative Commons License" 
-           src="https://licensebuttons.net/l/by/4.0/88x31.png" />
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">
+      <img style="margin-top: 0.5rem;" alt="Creative Commons License" src="https://licensebuttons.net/l/by/4.0/88x31.png" />
     </a>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) html.setAttribute('data-theme', currentTheme);
+
+    toggle.onclick = () => {
+      const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    };
+  </script>
 
 </body>
 </html>
