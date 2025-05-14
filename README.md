@@ -13,10 +13,10 @@ MedPerturb/
 ├── case_studies/
 │   └── case_study1.ipynb       # Case study 1 in paper (example analysis)
 │   └── case_study2.ipynb       # Case study 2 in paper (example analysis)
-├── requirements.txt            # Python dependencies
 ├── .env                        # Environment variables (tokens for HuggingFace/OpenAI)
-├── README.md                   # Project documentation
 ├── dataset.csv                 # Dataset
+├── README.md                   # Project documentation
+├── requirements.txt            # Python dependencies
 └── ...                         # (Other files or directories)
 ```
 
