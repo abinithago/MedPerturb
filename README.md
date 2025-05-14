@@ -29,7 +29,7 @@ MedPerturb/
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/MedPerturb.git
+   git clone https://github.com/abinithago/MedPerturb.git
    cd MedPerturb
    ```
 2. (Recommended) Create a virtual environment:
