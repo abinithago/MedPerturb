@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The MedPerturb Dataset</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --accent: #3b82f6;
+      --gray: #6b7280;
+      --light: #e5e7eb;
+      --card-bg: white;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    header, section {
+      max-width: 960px;
+      margin: auto;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .authors {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .buttons a:hover {
+      background-color: #2563eb;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      border: 1px solid var(--light);
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      color: var(--text);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--light);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-top: 1rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>The MedPerturb Dataset</h1>
+    <p class="authors">
+      Abinitha Gourabathina (MIT), Yuexing Hao (Cornell and MIT), Walter Gerych (MIT), Marzyeh Ghassemi (MIT)<br>
+      Contact: <a href="mailto:abinitha@mit.edu">abinitha@mit.edu</a>
+    </p>
+    <div class="buttons">
+      <a href="https://github.com/abinithago/MedPerturb">GitHub</a>
+      <a href="https://huggingface.co/datasets/abinitha/MedPerturb">Hugging Face</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Abstract</h2>
+    <p>
+      Clinical robustness is critical to the safe deployment of medical Large Language Models (LLMs),
+      but key questions remain about how LLMs and humans may differ in response to the real-world variability typified by clinical settings.
+      To address this, we introduce <strong>MedPerturb</strong>, a dataset designed to systematically evaluate medical LLMs under controlled perturbations of clinical input.
+      MedPerturb consists of clinical vignettes spanning a range of pathologies, each transformed along three axes:
+      (1) demographic modifications (e.g., gender-swapping or gender-removal);
+      (2) stylistic variation (e.g., uncertain phrasing or colloquial tone);
+      and (3) viewpoint reformulations (e.g., AI-generated multi-turn conversations or summaries).
+      With MedPerturb, we release a dataset of 800 clinical contexts grounded in realistic input variability,
+      outputs from four LLMs, and three human expert reads per clinical context.
+      We use MedPerturb in three case studies to reveal how shifts in gender identity cues, language style, or viewpoint
+      reflect diverging reasoning capabilities between humans and LLMs.
+      Our results highlight the need for evaluation frameworks that go beyond static benchmarks
+      to assess alignment in clinical reasoning between humans and AI systems.
+    </p>
+  </section>
+
+  <section>
+    <h2>Dataset Structure</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Original Data Source</th>
+          <th>Perturbation</th>
+          <th>Clinical Contexts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td rowspan="5">OncQA</td><td>Baseline</td><td>50</td></tr>
+        <tr><td>2</td><td>Gender-Swapped</td><td>50</td></tr>
+        <tr><td>3</td><td>Gender-Removed</td><td>50</td></tr>
+        <tr><td>4</td><td>Uncertain</td><td>50</td></tr>
+        <tr><td>5</td><td>Colorful</td><td>50</td></tr>
+        <tr><td>6</td><td rowspan="5">r/AskaDocs</td><td>Baseline</td><td>50</td></tr>
+        <tr><td>7</td><td>Gender-Swapped</td><td>50</td></tr>
+        <tr><td>8</td><td>Gender-Removed</td><td>50</td></tr>
+        <tr><td>9</td><td>Uncertain</td><td>50</td></tr>
+        <tr><td>10</td><td>Colorful</td><td>50</td></tr>
+        <tr><td>11</td><td rowspan="3">USMLE and Derm</td><td>Vignette</td><td>100</td></tr>
+        <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
+        <tr><td>13</td><td>Conversational</td><td>100</td></tr>
+        <tr><td colspan="3" style="text-align:right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
+        <tr><td colspan="3" style="text-align:right;"><strong>Treatment Questions (3 per context)</strong></td><td><strong>×3 = 2,400</strong></td></tr>
+        <tr><td colspan="3" style="text-align:right;"><strong>Total Human Reads</strong></td><td><strong>×3 = 7,200</strong></td></tr>
+        <tr><td colspan="3" style="text-align:right;"><strong>Total LLM Reads</strong></td><td><strong>×4 = 28,800</strong></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Sample Visualization</h2>
+    <p>t-SNE plot of LLM responses by perturbation type:</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tsne_2d_separated_classes.png/640px-Tsne_2d_separated_classes.png" alt="t-SNE Visualization">
+  </section>
+
+  <section>
+    <h2>Hugging Face Dataset Card</h2>
+    <div class="card">
+      <h3><a href="https://huggingface.co/datasets/abinithago/MedPerturb">MedPerturb on Hugging Face</a></h3>
+      <p>
+        The MedPerturb dataset contains 800 clinical vignettes systematically perturbed along gender, style, and viewpoint axes. Each context has 3 treatment questions and is annotated by humans and LLMs across 4 model types.
+      </p>
+      <p>
+        → <strong>Use case:</strong> Robustness testing, fairness auditing, hallucination detection, clinical evaluation
+      </p>
+      <p>
+        → <strong>Format:</strong> JSON, with metadata on perturbation type, model responses, and expert judgments.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      © 2025 The MedPerturb Team. This work is licensed under a 
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
+        Creative Commons Attribution 4.0 International License
+      </a>.
+    </p>
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
+      <img style="margin-top: 0.5rem;" alt="Creative Commons License" 
+           src="https://licensebuttons.net/l/by/4.0/88x31.png" />
+    </a>
+  </footer>
+
+</body>
+</html>
