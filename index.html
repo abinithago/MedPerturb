@@ -37,6 +37,7 @@
       max-width: 960px;
       margin: auto;
       margin-bottom: 3rem;
+      position: relative;
     }
 
     h1 {
@@ -83,16 +84,6 @@
 
     .buttons a:hover {
       background-color: #2563eb;
-    }
-
-    #toggleTheme {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--accent);
-      color: white;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
     }
 
     h2 {
@@ -166,9 +157,35 @@
       color: var(--gray);
       margin-top: 4rem;
     }
+
+    /* THEME TOGGLE BUTTON STYLES */
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 1000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .light-mode .theme-toggle {
+      background-color: black;
+      color: white;
+    }
+
+    .dark-mode .theme-toggle {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
-<body>
+<body class="light-mode">
+  <button class="theme-toggle" onclick="toggleTheme()">Dark Mode</button>
+
   <header>
     <div class="title-container">
       <div>
@@ -185,7 +202,6 @@
       <a href="https://github.com/abinithago/MedPerturb">GitHub</a>
       <a href="https://huggingface.co/datasets/abinitha/MedPerturb">Hugging Face</a>
       <a href="assets/medperturb.croissant" download>Download Croissant File</a>
-      <button id="toggleTheme">Dark Mode</button>
     </div>
   </header>
 
@@ -245,11 +261,14 @@
   </footer>
 
   <script>
-    const button = document.getElementById('toggleTheme');
-    button.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      button.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-    });
+    function toggleTheme() {
+      const body = document.body;
+      const isLight = body.classList.contains('light-mode');
+      body.classList.toggle('light-mode', !isLight);
+      body.classList.toggle('dark-mode', isLight);
+      const btn = document.querySelector('.theme-toggle');
+      btn.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+    }
   </script>
 </body>
 </html>
