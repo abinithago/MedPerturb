@@ -17,6 +17,7 @@
       --card-bg-light: white;
       --card-bg-dark: #374151;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-light);
@@ -65,6 +66,12 @@
     .authors {
       color: var(--gray);
       font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .affiliations {
+      font-size: 0.85rem;
+      color: var(--gray);
       margin-bottom: 1.5rem;
     }
 
@@ -82,7 +89,7 @@
     }
 
     .buttons a:hover {
-      background-color: #2563eb;
+      background-color: #498467;
     }
 
     h2 {
@@ -183,7 +190,7 @@
   </style>
 </head>
 <body class="light-mode">
-  <button class="theme-toggle" onclick="toggleTheme()">Dark Mode</button>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
   <header>
     <div class="title-container">
@@ -194,8 +201,12 @@
       <img src="logo.png" alt="Logo" class="logo">
     </div>
     <p class="authors">
-      Abinitha Gourabathina (MIT), Yuexing Hao (Cornell and MIT), Walter Gerych (MIT), Marzyeh Ghassemi (MIT)<br>
+      Abinitha Gourabathina<sup>1</sup>, Yuexing Hao<sup>1,2</sup>, Walter Gerych<sup>1</sup>, Marzyeh Ghassemi<sup>1</sup><br>
       Contact: <a href="mailto:abinitha@mit.edu">abinitha@mit.edu</a>
+    </p>
+    <p class="affiliations">
+      <sup>1</sup>Department of Electrical Engineering and Computer Science, Massachusetts Institute of Technology, Cambridge, MA, USA<br>
+      <sup>2</sup>Department of Electrical and Computer Engineering, Cornell University, Ithaca, NY, USA
     </p>
     <div class="buttons">
       <a href="https://github.com/abinithago/MedPerturb">GitHub</a>
@@ -248,7 +259,7 @@
 
   <footer>
     <p>
-      © 2025 The MedPerturb Team. This work is licensed under a 
+      © 2025. This work is licensed under a 
       <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
         Creative Commons Attribution 4.0 International License
       </a>.
@@ -266,7 +277,7 @@
       body.classList.toggle('light-mode', !isLight);
       body.classList.toggle('dark-mode', isLight);
       const btn = document.querySelector('.theme-toggle');
-      btn.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+      btn.textContent = isLight ? '☀️ Light Mode' : '🌙 Dark Mode';
     }
   </script>
 </body>
