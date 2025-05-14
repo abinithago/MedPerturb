@@ -224,7 +224,8 @@
     <p><strong>[Figure placeholder – add your figure here]</strong></p>
   </section>
 
-  <table>
+<h2>Dataset Overview</h2>
+<table style="font-size: 0.9rem; width: 100%;">
   <thead>
     <tr>
       <th>#</th>
@@ -250,22 +251,10 @@
     <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
     <tr><td>13</td><td>Conversational</td><td>100</td></tr>
 
-    <tr>
-      <td colspan="3" style="text-align:right;"><strong>Total Clinical Contexts</strong></td>
-      <td><strong>800</strong></td>
-    </tr>
-    <tr>
-      <td colspan="3" style="text-align:right;"><strong>Treatment Questions (3 per context)</strong></td>
-      <td><strong>×3 = 2400</strong></td>
-    </tr>
-    <tr>
-      <td colspan="3" style="text-align:right;"><strong>Total Human Reads (3 reads per question)</strong></td>
-      <td><strong>×3 = 7,200</strong></td>
-    </tr>
-    <tr>
-      <td colspan="3" style="text-align:right;"><strong>Total LLM Reads (3 runs per question × 4 models)</strong></td>
-      <td><strong>×4 = 28,800</strong></td>
-    </tr>
+    <tr><td colspan="3" style="text-align: right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
+    <tr><td colspan="3" style="text-align: right;"><strong>Treatment Questions (3 per context)</strong></td><td><strong>×3 = 2400</strong></td></tr>
+    <tr><td colspan="3" style="text-align: right;"><strong>Total human reads (3 per question)</strong></td><td><strong>×3 = 7,200</strong></td></tr>
+    <tr><td colspan="3" style="text-align: right;"><strong>Total LLM reads (3 per question × 4 models)</strong></td><td><strong>×4 = 28,800</strong></td></tr>
   </tbody>
 </table>
 
@@ -293,13 +282,13 @@
     <div class="card">
       <h3><a href="https://huggingface.co/datasets/abinithago/MedPerturb">MedPerturb on Hugging Face</a></h3>
       <p>
-        The MedPerturb dataset contains 800 clinical vignettes systematically perturbed along gender, style, and viewpoint axes. Each context has 3 treatment questions and is annotated by humans and LLMs across 4 model types.
+        The MedPerturb dataset contains 800 clinical vignettes systematically perturbed along gender, style, and viewpoint axes. Each context has 3 treatment questions and is annotated by humans and LLMs.
       </p>
       <p>
         → <strong>Use case:</strong> Robustness testing, fairness auditing, hallucination detection, clinical evaluation
       </p>
       <p>
-        → <strong>Format:</strong> JSON, with metadata on perturbation type, model responses, and expert judgments.
+        → <strong>Format:</strong> JSON, with metadata on perturbation type, model responses, and clinician judgments.
       </p>
     </div>
   </section>
