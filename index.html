@@ -11,8 +11,9 @@
       --text-light: #1f2937;
       --bg-dark: #1f2937;
       --text-dark: #f9fafb;
-      --accent: #3b82f6;
+      --accent: #498467;
       --gray: #6b7280;
+      --gray-light: #d1d5db;
       --light: #e5e7eb;
       --card-bg-light: white;
       --card-bg-dark: #374151;
@@ -52,6 +53,10 @@
       margin-bottom: 1rem;
     }
 
+    body.dark-mode .subtitle {
+      color: var(--gray-light);
+    }
+
     .title-container {
       display: flex;
       align-items: center;
@@ -66,7 +71,7 @@
     .authors {
       color: var(--gray);
       font-size: 0.95rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .affiliations {
@@ -89,7 +94,7 @@
     }
 
     .buttons a:hover {
-      background-color: #498467;
+      background-color: #3b6e5a;
     }
 
     h2 {
@@ -175,17 +180,13 @@
       font-weight: 600;
       cursor: pointer;
       z-index: 1000;
+      background-color: var(--accent);
+      color: white;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    .light-mode .theme-toggle {
-      background-color: black;
-      color: white;
-    }
-
-    .dark-mode .theme-toggle {
-      background-color: white;
-      color: black;
+    .theme-toggle:hover {
+      background-color: #3b6e5a;
     }
   </style>
 </head>
