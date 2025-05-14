@@ -1,6 +1,6 @@
 # MedPerturb
 
-MedPerturb is a toolkit for perturbing and evaluating clinical context datasets using large language models (LLMs). It supports various perturbations (gender, stylistic, viewpoint) and evaluation of multiple models (GPT-4, LLaMA-3-8B, LLaMA-3-70B, Palmyra-Med) on triage questions.
+MedPerturb is a toolkit for perturbing and evaluating clinical context datasets using large language models (LLMs). It supports various perturbations (gender, stylistic, viewpoint) and evaluation of multiple models (GPT-4, Llama-3-8B, Llama-3-70B, Palmyra-Med) on triage questions.
 
 ## File & Directory Overview
 
@@ -56,7 +56,7 @@ OPENAI_API_KEY=your_openai_token_here
 ## Usage
 
 ### 1. Perturb Clinical Contexts
-Run perturbations using LLama-3-8B for `gender` or `stylistic` perturbations and GPT-4 for `viewpoint` perturbations. 
+Run perturbations using Llama-3-8B for `gender` or `stylistic` perturbations and GPT-4 for `viewpoint` perturbations. 
 ```bash
 python code/perturb_data.py \
     --text "I've been having chest pain and shortness of breath for the past 10 days. I'm 22 years old." \
