@@ -24,7 +24,6 @@ MedPerturb/
 ## Features
 - **Perturb clinical text** by gender, style, or viewpoint using LLMs
 - **Evaluate LLMs** on triage questions (MANAGE, VISIT, RESOURCE)
-- **Bootstrap-based mutual information analysis** for clinicians and models
 - **Supports both HuggingFace and OpenAI models**
 
 ## Installation
