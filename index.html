@@ -225,38 +225,40 @@
   </section>
 
 <h2>Dataset Overview</h2>
-<table style="font-size: 0.9rem; width: 100%;">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Original Data Source</th>
-      <th>Perturbation</th>
-      <th>Clinical Contexts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>1</td><td rowspan="5">OncQA</td><td>Baseline</td><td>50</td></tr>
-    <tr><td>2</td><td>Gender-Swapped</td><td>50</td></tr>
-    <tr><td>3</td><td>Gender-Removed</td><td>50</td></tr>
-    <tr><td>4</td><td>Uncertain</td><td>50</td></tr>
-    <tr><td>5</td><td>Colorful</td><td>50</td></tr>
+<div class="abstract"> <!-- reuse the abstract's styling -->
+  <table style="font-size: 0.9rem;">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Original Data Source</th>
+        <th>Perturbation</th>
+        <th>Clinical Contexts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td rowspan="5">OncQA</td><td>Baseline</td><td>50</td></tr>
+      <tr><td>2</td><td>Gender-Swapped</td><td>50</td></tr>
+      <tr><td>3</td><td>Gender-Removed</td><td>50</td></tr>
+      <tr><td>4</td><td>Uncertain</td><td>50</td></tr>
+      <tr><td>5</td><td>Colorful</td><td>50</td></tr>
 
-    <tr><td>6</td><td rowspan="5">r/AskaDocs</td><td>Baseline</td><td>50</td></tr>
-    <tr><td>7</td><td>Gender-Swapped</td><td>50</td></tr>
-    <tr><td>8</td><td>Gender-Removed</td><td>50</td></tr>
-    <tr><td>9</td><td>Uncertain</td><td>50</td></tr>
-    <tr><td>10</td><td>Colorful</td><td>50</td></tr>
+      <tr><td>6</td><td rowspan="5">r/AskaDocs</td><td>Baseline</td><td>50</td></tr>
+      <tr><td>7</td><td>Gender-Swapped</td><td>50</td></tr>
+      <tr><td>8</td><td>Gender-Removed</td><td>50</td></tr>
+      <tr><td>9</td><td>Uncertain</td><td>50</td></tr>
+      <tr><td>10</td><td>Colorful</td><td>50</td></tr>
 
-    <tr><td>11</td><td rowspan="3">USMLE and Derm</td><td>Vignette</td><td>100</td></tr>
-    <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
-    <tr><td>13</td><td>Conversational</td><td>100</td></tr>
+      <tr><td>11</td><td rowspan="3">USMLE and Derm</td><td>Vignette</td><td>100</td></tr>
+      <tr><td>12</td><td>Multiturn</td><td>100</td></tr>
+      <tr><td>13</td><td>Conversational</td><td>100</td></tr>
 
-    <tr><td colspan="3" style="text-align: right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
-    <tr><td colspan="3" style="text-align: right;"><strong>Treatment Questions (3 per context)</strong></td><td><strong>×3 = 2400</strong></td></tr>
-    <tr><td colspan="3" style="text-align: right;"><strong>Total human reads (3 per question)</strong></td><td><strong>×3 = 7,200</strong></td></tr>
-    <tr><td colspan="3" style="text-align: right;"><strong>Total LLM reads (3 per question × 4 models)</strong></td><td><strong>×4 = 28,800</strong></td></tr>
-  </tbody>
-</table>
+      <tr><td colspan="3" style="text-align: right;"><strong>Total Clinical Contexts</strong></td><td><strong>800</strong></td></tr>
+      <tr><td colspan="3" style="text-align: right;"><strong>Treatment Questions (3 per context)</strong></td><td><strong>×3 = 2400</strong></td></tr>
+      <tr><td colspan="3" style="text-align: right;"><strong>Total human reads (3 per question)</strong></td><td><strong>×3 = 7,200</strong></td></tr>
+      <tr><td colspan="3" style="text-align: right;"><strong>Total LLM reads (3 per question × 4 models)</strong></td><td><strong>×4 = 28,800</strong></td></tr>
+    </tbody>
+  </table>
+</div>
 
 
   <section>
