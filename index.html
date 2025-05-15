@@ -34,12 +34,18 @@
       color: var(--text-dark);
     }
 
-    body.dark-mode p a,
-    body.dark-mode li a {
-      color: #93f9b9;
+    body.dark-mode .authors a {
+      color: #93f9b9; /* or another high-contrast light color */
     }
 
+    body.dark-mode .authors a:hover {
+      color: #bbffe3;
+    }
 
+    body.dark-mode img {
+      filter: brightness(0.85) contrast(1.05);
+    }
+    
     header, section {
       max-width: 960px;
       margin: auto;
