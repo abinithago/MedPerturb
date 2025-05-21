@@ -16,6 +16,7 @@ MedPerturb/
 │   └── case_study2.ipynb       # Case study 2 in paper (example analysis)
 ├── .env                        # Environment variables (tokens for HuggingFace/OpenAI)
 ├── dataset.csv                 # Dataset
+├── clinician_demographics.csv  # Clinician Demographics
 ├── README.md                   # Project documentation
 ├── requirements.txt            # Python dependencies
 └── ...                         # (Other files or directories)
