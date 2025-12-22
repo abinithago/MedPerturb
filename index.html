@@ -4,39 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The MedPerturb Dataset</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-light: #f9fafb;
-      --text-light: #1f2937;
-      --bg-dark: #1f2937;
-      --text-dark: #f9fafb;
+      --bg-light: #fafbfc;
+      --text-light: #1a202c;
+      --bg-dark: #0f172a;
+      --text-dark: #f1f5f9;
       --accent: #498467;
-      --gray: #6b7280;
-      --gray-light: #d1d5db;
-      --light: #e5e7eb;
-      --card-bg-light: white;
-      --card-bg-dark: #374151;
+      --accent-hover: #3b6e5a;
+      --accent-light: #6bb88a;
+      --gray: #64748b;
+      --gray-light: #cbd5e1;
+      --light: #e2e8f0;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #1e293b;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
+    * {
+      box-sizing: border-box;
+    }
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-light);
+      background: linear-gradient(135deg, var(--bg-light) 0%, #f0f4f8 100%);
       color: var(--text-light);
       margin: 0;
-      padding: 2rem;
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
+      padding: 0;
+      line-height: 1.7;
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
     }
 
     body.dark-mode {
-      background-color: var(--bg-dark);
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 100%);
       color: var(--text-dark);
     }
 
     body.dark-mode .authors a {
-      color: #93f9b9; /* or another high-contrast light color */
+      color: #93f9b9;
     }
 
     body.dark-mode .authors a:hover {
@@ -44,26 +56,58 @@
     }
 
     body.dark-mode img {
-      filter: brightness(0.85) contrast(1.05);
+      filter: brightness(0.9) contrast(1.05);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
     }
     
     header, section {
-      max-width: 960px;
-      margin: auto;
-      margin-bottom: 3rem;
+      max-width: 1000px;
+      margin: 0 auto 4rem;
       position: relative;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    body.dark-mode h1 {
+      background: linear-gradient(135deg, #6bb88a 0%, #93f9b9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .subtitle {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--gray);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      line-height: 1.6;
     }
 
     body.dark-mode .subtitle {
@@ -72,145 +116,420 @@
 
     .title-container {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .title-container > div {
+      flex: 1;
     }
 
     .logo {
-      height: 60px;
-      margin-left: 1rem;
+      height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .authors {
       color: var(--gray);
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.8;
     }
 
     .affiliations {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--gray);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
     .buttons a {
-      display: inline-block;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
       color: white;
-      border-radius: 6px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.2s;
+      font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .buttons a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .buttons a:hover::before {
+      left: 100%;
     }
 
     .buttons a:hover {
-      background-color: #3b6e5a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+    }
+
+    .buttons a:active {
+      transform: translateY(0);
     }
 
     h2 {
-      font-size: 1.6rem;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--light);
-      padding-bottom: 0.4rem;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid;
+      border-image: linear-gradient(90deg, var(--accent) 0%, transparent 100%) 1;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+
+    body.dark-mode h2 {
+      border-image: linear-gradient(90deg, var(--accent-light) 0%, transparent 100%) 1;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+    }
+
+    body.dark-mode p {
+      color: var(--text-dark);
     }
 
     table {
-      width: 90%;
+      width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       background-color: var(--card-bg-light);
-      border-radius: 8px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
     }
 
     body.dark-mode table {
       background-color: var(--card-bg-dark);
+      border-color: var(--border-dark);
     }
 
     th, td {
-      border: 1px solid var(--light);
-      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border-light);
+      padding: 1rem 1.2rem;
       text-align: left;
       vertical-align: top;
     }
 
+    body.dark-mode th,
+    body.dark-mode td {
+      border-color: var(--border-dark);
+    }
+
     th {
-      background-color: #f3f4f6;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     body.dark-mode th {
-      background-color: #4b5563;
-      color: #f9fafb;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      color: var(--text-dark);
+    }
+
+    tbody tr {
+      transition: background-color 0.2s ease;
+    }
+
+    tbody tr:hover {
+      background-color: rgba(73, 132, 103, 0.05);
+    }
+
+    body.dark-mode tbody tr:hover {
+      background-color: rgba(107, 184, 138, 0.1);
     }
 
     img {
       max-width: 100%;
       height: auto;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-xl);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.01);
+      box-shadow: var(--shadow-xl);
+    }
+
+    figure {
+      margin: 2rem 0;
+      text-align: center;
     }
 
     .card {
-      background-color: var(--card-bg-light);
-      padding: 1rem 1.5rem;
-      border: 1px solid var(--light);
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, #fafbfc 100%);
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
     }
 
     body.dark-mode .card {
-      background-color: var(--card-bg-dark);
+      background: linear-gradient(135deg, var(--card-bg-dark) 0%, #1a1f3a 100%);
+      border-color: var(--border-dark);
     }
 
     .card h3 {
       margin-top: 0;
+      margin-bottom: 1rem;
       color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    body.dark-mode .card h3 {
+      color: var(--accent-light);
     }
 
     .card a {
       color: var(--accent);
       text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .card a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    body.dark-mode .card a {
+      color: var(--accent-light);
+    }
+
+    body.dark-mode .card a:hover {
+      color: #93f9b9;
     }
 
     footer {
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--gray);
-      margin-top: 4rem;
+      margin-top: 6rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-light);
+    }
+
+    body.dark-mode footer {
+      border-color: var(--border-dark);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
     }
 
     /* THEME TOGGLE BUTTON STYLES */
     .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.5rem 1rem;
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.75rem 1.25rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 12px;
       font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
       z-index: 1000;
-      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
       color: white;
-      transition: background-color 0.3s, color 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(10px);
     }
 
     .theme-toggle:hover {
-      background-color: #3b6e5a;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+      background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+    }
+
+    .theme-toggle:active {
+      transform: translateY(0);
+    }
+
+    /* Key Findings Section */
+    #results {
+      background: linear-gradient(135deg, rgba(73, 132, 103, 0.05) 0%, rgba(107, 184, 138, 0.05) 100%);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      margin: 3rem auto;
+      border: 1px solid var(--border-light);
+    }
+
+    body.dark-mode #results {
+      background: linear-gradient(135deg, rgba(73, 132, 103, 0.1) 0%, rgba(107, 184, 138, 0.1) 100%);
+      border-color: var(--border-dark);
+    }
+
+    #results h2 {
+      margin-top: 0;
+      color: var(--text-light);
+    }
+
+    body.dark-mode #results h2 {
+      color: var(--text-dark);
+    }
+
+    #results ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #results li {
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--card-bg-light);
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    #results li:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    body.dark-mode #results li {
+      background: var(--card-bg-dark);
+      border-left-color: var(--accent-light);
+    }
+
+    #results li:last-child {
+      margin-bottom: 0;
+    }
+
+    #results .font-semibold {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    body.dark-mode #results .font-semibold {
+      color: var(--accent-light);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .title-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo {
+        height: 60px;
+        margin-top: 1rem;
+      }
+
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 0.75rem;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body class="light-mode">
   <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
 
+  <div class="container">
   <header>
     <div class="title-container">
       <div>
@@ -240,9 +559,8 @@
     <p>
       Clinical robustness is critical to the safe deployment of medical Large Language Models (LLMs), but key questions remain about how LLMs and humans may differ in response to the real-world variability typified by clinical settings. To address this, we introduce MedPerturb, a dataset designed to systematically evaluate medical LLMs under controlled perturbations of clinical input. MedPerturb consists of clinical vignettes spanning a range of pathologies, each transformed along three axes: (1) gender modifications (e.g., gender-swapping or gender-removal); (2) stylistic variation (e.g., uncertain phrasing or colloquial tone); and (3) viewpoint reformulations (e.g., multi-turn conversations or summaries). With MedPerturb, we release a dataset of 800 clinical contexts grounded in realistic input variability, outputs from four LLMs, and three human expert reads per clinical context. We use MedPerturb in two case studies to reveal how shifts in gender identity cues, language style, or viewpoint reflect diverging reasoning capabilities between humans and LLMs. Our results highlight the need for evaluation frameworks that go beyond static benchmarks to assess alignment in clinical reasoning between humans and AI systems.
     </p>
-    <p><strong>
-      <figure>
-      <img src="assets/website_pipeline.png" alt="Figure 1 placeholder">
+    <figure>
+      <img src="assets/website_pipeline.png" alt="MedPerturb Pipeline Overview">
     </figure>
   </section>
 
@@ -284,11 +602,9 @@
     </div>
   </section>
 
-  <section id="results" class="py-12 bg-white dark:bg-gray-900">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-3xl font-semibold text-gray-800 dark:text-white mb-6">Key Findings of Case Studies</h2>
-
-    <ul class="list-disc list-inside space-y-4 text-gray-700 dark:text-gray-200 text-lg">
+  <section id="results">
+    <h2>Key Findings of Case Studies</h2>
+    <ul>
       <li>
         <span class="font-semibold">LLMs tend to over-allocate resources and under-recommend self-management</span>: They often favor more intensive medical interventions than necessary, potentially straining healthcare systems and misaligning with patient-centered care.
       </li>
@@ -299,8 +615,7 @@
         <span class="font-semibold">AI-generated clinical content can shift human decision-making</span>: Clinicians shown AI-generated text tend to recommend more self-management and less resources, showing that AI content can influence treatment planning. Specifically, we look at LLM-generated summaries and multiturn conversations, which are key LLM tasks in clinical integration. 
       </li>
     </ul>
-  </div>
-</section>
+  </section>
 
   <section>
     <h2>Hugging Face Dataset Card</h2>
@@ -330,6 +645,7 @@
            src="https://licensebuttons.net/l/by/4.0/88x31.png" />
     </a>
   </footer>
+  </div>
 
   <script>
     function toggleTheme() {
